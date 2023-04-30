@@ -5,7 +5,7 @@
 class Sudoku {
 	int grid[9][9];
 public:
-	SudokuPuzzle();
+	void SudokuPuzzle();
 	void generate();
 	bool solve();
 	void getHint(int& row, int& col, int& value);
