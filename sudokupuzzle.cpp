@@ -1,5 +1,8 @@
 #include "sudokupuzzle.h"
 
+bool sudokuSolverAux(int grid[GRID_SIZE][GRID_SIZE], int row, int col);
+
+
 SudokuPuzzle::SudokuPuzzle() {
 	// TODO Auto-generated constructor stub
 	for (int i = 0; i < GRID_SIZE; i++) {
