@@ -83,7 +83,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="sudoku.cpp" />
+    <ClCompile Include="sudokupuzzle.cpp" />
     <QtRcc Include="Sudoku.qrc" />
     <QtUic Include="Sudoku.ui" />
     <QtMoc Include="mainwindow.h" />
@@ -91,7 +91,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="sudoku.h" />
+    <ClInclude Include="sudokupuzzle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

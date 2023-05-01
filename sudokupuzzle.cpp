@@ -18,7 +18,7 @@ void getHint(int& row, int& col, int& value) {
 	// TODO Auto-generated method stub
 }
 
-int getValue(int row, int col) {
+int getValue(int row, int col)  {
 	// TODO Auto-generated method stub
 	return 0;
 }

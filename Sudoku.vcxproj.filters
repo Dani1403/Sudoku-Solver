@@ -40,12 +40,12 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sudoku.cpp">
+    <ClCompile Include="sudokupuzzle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="sudoku.h">
+    <ClInclude Include="sudokupuzzle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -8,3 +8,4 @@ Sudoku::Sudoku(QWidget *parent)
 
 Sudoku::~Sudoku()
 {}
+
