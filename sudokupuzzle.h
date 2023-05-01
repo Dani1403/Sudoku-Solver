@@ -2,6 +2,11 @@
 #ifndef SUDOKU_PUZZLE_H_
 #define SUDOKU_PUZZLE_H_
 #define GRID_SIZE 9
+#define SQUARE_SIZE 3
+#define NUM_VALUES 9
+#define EMPTY 0
+#define MIN_VALUE 1
+
 class SudokuPuzzle {
 	int grid[GRID_SIZE][GRID_SIZE];
 public:
