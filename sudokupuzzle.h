@@ -5,7 +5,6 @@
 #define SQUARE_SIZE 3
 #define NUM_VALUES 9
 #define EMPTY 0
-#define MIN_VALUE 1
 
 class SudokuPuzzle {
 	int grid[GRID_SIZE][GRID_SIZE];
