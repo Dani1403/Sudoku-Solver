@@ -1,17 +1,17 @@
 #pragma once
-#ifndef SUDOKU_H_
-#define SUDOKU_H_
-
-class Sudoku {
-	int grid[9][9];
+#ifndef SUDOKU_PUZZLE_H_
+#define SUDOKU_PUZZLE_H_
+#define GRID_SIZE 9
+class SudokuPuzzle {
+	int grid[GRID_SIZE][GRID_SIZE];
 public:
-	void SudokuPuzzle();
-	void generate();
-	bool solve();
+	SudokuPuzzle();
+	void generatePuzzle();
+	bool solvePuzzle();
 	void getHint(int& row, int& col, int& value);
 	int getValue(int row, int col) const;
 	void setValue(int row, int col, int value);
 };
 
 
-#endif /*SUDOKU_H_*/
+#endif /*SUDOKU_PUZZLE_H_*/

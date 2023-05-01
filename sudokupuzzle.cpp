@@ -1,29 +1,34 @@
-#include "sudoku.h"
+#include "sudokupuzzle.h"
 
-void SudokuPuzzle() {
+SudokuPuzzle::SudokuPuzzle() {
 	// TODO Auto-generated constructor stub
-
+	for (int i = 0; i < GRID_SIZE; i++) {
+		for (int j = 0; j < GRID_SIZE; j++) {
+			grid[i][j] = 0;
+		}
+	}
 }
 
-void generate() {
+
+void SudokuPuzzle::generatePuzzle() {
 	// TODO Auto-generated method stub
 }
 
-bool solve() {
+bool SudokuPuzzle::solvePuzzle() {
 	// TODO Auto-generated method stub
 	return false;
 }
 
-void getHint(int& row, int& col, int& value) {
+void SudokuPuzzle::getHint(int& row, int& col, int& value) {
 	// TODO Auto-generated method stub
 }
 
-int getValue(int row, int col)  {
+int SudokuPuzzle::getValue(int row, int col) const {
 	// TODO Auto-generated method stub
-	return 0;
+	return grid[row][col];
 }
 
-void setValue(int row, int col, int value) {
+void SudokuPuzzle::setValue(int row, int col, int value) {
 	// TODO Auto-generated method stub
 }
 
