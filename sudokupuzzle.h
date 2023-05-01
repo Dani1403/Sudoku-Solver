@@ -1,6 +1,10 @@
 #pragma once
 #ifndef SUDOKU_PUZZLE_H_
 #define SUDOKU_PUZZLE_H_
+
+#include <iostream>
+#include <cstdlib>
+
 #define GRID_SIZE 9
 #define SQUARE_SIZE 3
 #define NUM_VALUES 9

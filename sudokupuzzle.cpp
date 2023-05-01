@@ -1,7 +1,6 @@
 #include "sudokupuzzle.h"
 
-bool sudokuSolverAux(int grid[GRID_SIZE][GRID_SIZE], int row, int col);
-
+int sudokuSolverAux(int grid[GRID_SIZE][GRID_SIZE], int row, int col);
 
 SudokuPuzzle::SudokuPuzzle() {
 	// TODO Auto-generated constructor stub
@@ -116,20 +115,22 @@ bool isMoveLegal(int grid[GRID_SIZE][GRID_SIZE], int row, int col, int digit) {
  * @param grid : the sudoku grid
  * @param row : current row
  * @param col : current column
+ * returns the number of solutions
  */
-bool sudokuSolverAux(int grid[GRID_SIZE][GRID_SIZE], int row, int col) {
+int sudokuSolverAux(int grid[GRID_SIZE][GRID_SIZE], int row, int col) {
     if (row == GRID_SIZE - 1 && col == GRID_SIZE)
     {
-        return true;
+        return 1;
     }
     if (col == GRID_SIZE)
     {
         row++;
         col = 0;
     }
+    int counter = 0;
     if (grid[row][col] != 0)
     {
-        return sudokuSolverAux(grid, row, col + 1);
+        counter += sudokuSolverAux(grid, row, col + 1);
     }
     for (int digit = 1; digit <= NUM_VALUES; digit++)
     {
@@ -138,11 +139,8 @@ bool sudokuSolverAux(int grid[GRID_SIZE][GRID_SIZE], int row, int col) {
             continue;
         }
         grid[row][col] = digit;
-        if (sudokuSolverAux(grid, row, col + 1))
-        {
-            return true;
-        }
+        counter += sudokuSolverAux(grid, row, col + 1);
         grid[row][col] = 0;
     }
-    return false;
+    return counter;
 }
