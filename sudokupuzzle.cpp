@@ -12,11 +12,30 @@ SudokuPuzzle::SudokuPuzzle() {
 }
 
 void SudokuPuzzle::generatePuzzle() {
+    SudokuPuzzle puzzle;
+    puzzle.solvePuzzle(false);
+    int numSquares = DIFFICULTY;
+    while (numSquares > 0)
+    {
+		int row = rand() % GRID_SIZE;
+		int col = rand() % GRID_SIZE;
+        int value = puzzle.getValue(row, col);
+        if (value != EMPTY)
+        {
+			puzzle.setValue(row, col, EMPTY);
+            if (puzzle.solvePuzzle(true) != 1) 
+            {
+                puzzle.setValue(row, col, value);
+                numSquares++;
+            }
+			numSquares--;
+		}
+	}
 }
 
 
-int SudokuPuzzle::solvePuzzle() {
-	return sudokuSolverAux(grid, 0, 0, true);
+int SudokuPuzzle::solvePuzzle(bool findAll) {
+	return sudokuSolverAux(grid, 0, 0, findAll);
 }
 
 void SudokuPuzzle::getHint(int& row, int& col, int& value) {
@@ -28,7 +47,7 @@ int SudokuPuzzle::getValue(int row, int col) const {
 }
 
 void SudokuPuzzle::setValue(int row, int col, int value) {
-	// TODO Auto-generated method stub
+    grid[row][col] = value;
 }
 
 /*

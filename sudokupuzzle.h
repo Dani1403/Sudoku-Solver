@@ -16,7 +16,7 @@ class SudokuPuzzle {
 public:
 	SudokuPuzzle();
 	void generatePuzzle();
-	int solvePuzzle();
+	int solvePuzzle(bool findAll);
 	void getHint(int& row, int& col, int& value);
 	int getValue(int row, int col) const;
 	void setValue(int row, int col, int value);
