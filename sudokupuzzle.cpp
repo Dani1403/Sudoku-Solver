@@ -1,6 +1,6 @@
 #include "sudokupuzzle.h"
 
-int sudokuSolverAux(int grid[GRID_SIZE][GRID_SIZE], int row, int col);
+int sudokuSolverAux(int grid[GRID_SIZE][GRID_SIZE], int row, int col, bool findAll);
 
 SudokuPuzzle::SudokuPuzzle() {
 	// TODO Auto-generated constructor stub
@@ -12,11 +12,11 @@ SudokuPuzzle::SudokuPuzzle() {
 }
 
 void SudokuPuzzle::generatePuzzle() {
-	// TODO Auto-generated method stub
 }
 
-bool SudokuPuzzle::solvePuzzle() {
-	return sudokuSolverAux(grid, 0, 0);
+
+int SudokuPuzzle::solvePuzzle() {
+	return sudokuSolverAux(grid, 0, 0, true);
 }
 
 void SudokuPuzzle::getHint(int& row, int& col, int& value) {
@@ -30,7 +30,6 @@ int SudokuPuzzle::getValue(int row, int col) const {
 void SudokuPuzzle::setValue(int row, int col, int value) {
 	// TODO Auto-generated method stub
 }
-
 
 /*
  * checks if the given row already contains a given digit, except for the given column
@@ -117,30 +116,36 @@ bool isMoveLegal(int grid[GRID_SIZE][GRID_SIZE], int row, int col, int digit) {
  * @param col : current column
  * returns the number of solutions
  */
-int sudokuSolverAux(int grid[GRID_SIZE][GRID_SIZE], int row, int col) {
-    if (row == GRID_SIZE - 1 && col == GRID_SIZE)
+int sudokuSolverAux(int grid[GRID_SIZE][GRID_SIZE], int row, int col, bool findAll)
+{
+    if (row == GRID_SIZE)
     {
         return 1;
     }
     if (col == GRID_SIZE)
     {
-        row++;
-        col = 0;
+        return sudokuSolverAux(grid, row + 1, 0, findAll);
     }
-    int counter = 0;
     if (grid[row][col] != 0)
     {
-        counter += sudokuSolverAux(grid, row, col + 1);
+        return sudokuSolverAux(grid, row, col + 1, findAll);
     }
+    int counter = 0;
     for (int digit = 1; digit <= NUM_VALUES; digit++)
     {
-        if (!isMoveLegal(grid, row, col, digit))
+        if (isMoveLegal(grid, row, col, digit))
         {
-            continue;
+            grid[row][col] = digit;
+            if (findAll)
+            {
+                counter += sudokuSolverAux(grid, row, col + 1, true);
+            }
+            else if (sudokuSolverAux(grid, row, col + 1, false) == 1)
+            {
+                return 1;
+            }
+            grid[row][col] = 0;
         }
-        grid[row][col] = digit;
-        counter += sudokuSolverAux(grid, row, col + 1);
-        grid[row][col] = 0;
     }
-    return counter;
+    return findAll ? counter : 0;
 }

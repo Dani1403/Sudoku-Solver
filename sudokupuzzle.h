@@ -9,13 +9,14 @@
 #define SQUARE_SIZE 3
 #define NUM_VALUES 9
 #define EMPTY 0
+#define DIFFICULTY 40
 
 class SudokuPuzzle {
 	int grid[GRID_SIZE][GRID_SIZE];
 public:
 	SudokuPuzzle();
 	void generatePuzzle();
-	bool solvePuzzle();
+	int solvePuzzle();
 	void getHint(int& row, int& col, int& value);
 	int getValue(int row, int col) const;
 	void setValue(int row, int col, int value);
