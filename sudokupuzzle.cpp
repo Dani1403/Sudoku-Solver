@@ -12,20 +12,19 @@ SudokuPuzzle::SudokuPuzzle() {
 }
 
 void SudokuPuzzle::generatePuzzle() {
-    SudokuPuzzle puzzle;
-    puzzle.solvePuzzle(false);
+    this->solvePuzzle(false);
     int numSquares = DIFFICULTY;
     while (numSquares > 0)
     {
 		int row = rand() % GRID_SIZE;
 		int col = rand() % GRID_SIZE;
-        int value = puzzle.getValue(row, col);
+        int value = this->getValue(row, col);
         if (value != EMPTY)
         {
-			puzzle.setValue(row, col, EMPTY);
-            if (puzzle.solvePuzzle(true) != 1) 
+			this->setValue(row, col, EMPTY);
+            if (this->solvePuzzle(true) != 1) 
             {
-                puzzle.setValue(row, col, value);
+                this->setValue(row, col, value);
                 numSquares++;
             }
 			numSquares--;
@@ -48,6 +47,16 @@ int SudokuPuzzle::getValue(int row, int col) const {
 
 void SudokuPuzzle::setValue(int row, int col, int value) {
     grid[row][col] = value;
+}
+
+void SudokuPuzzle::clear() {
+    for (int i = 0; i < GRID_SIZE; i++)
+    {
+        for (int j = 0; j < GRID_SIZE; j++)
+        {
+			grid[i][j] = EMPTY;
+		}
+	}
 }
 
 /*

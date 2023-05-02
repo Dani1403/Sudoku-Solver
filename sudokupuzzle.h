@@ -20,6 +20,7 @@ public:
 	void getHint(int& row, int& col, int& value);
 	int getValue(int row, int col) const;
 	void setValue(int row, int col, int value);
+	void clear();
 };
 
 
