@@ -6,6 +6,7 @@
 #include <cstdlib>
 
 #define GRID_SIZE 9
+#define GROUP_SIZE 3
 #define SQUARE_SIZE 3
 #define NUM_VALUES 9
 #define EMPTY 0
@@ -20,7 +21,8 @@ public:
 	void getHint(int& row, int& col, int& value);
 	int getValue(int row, int col) const;
 	void setValue(int row, int col, int value);
-	void clear();
+	void clearGrid();
+	void shuffleGrid();
 };
 
 
