@@ -27,29 +27,38 @@ Sudoku::Sudoku(QWidget* parent)
             m_labelGrid[row][col] = label;
             m_lineEditGrid[row][col] = lineEdit;
             
-            if (row % GROUP_SIZE == 0) {
-                if (col % GROUP_SIZE == 0) {
+            if (row % GROUP_SIZE == 0) 
+            {
+                if (col % GROUP_SIZE == 0) 
+                {
                     label->setStyleSheet("QLabel { border: 1px solid black; border-top: 3px solid black; border-left: 3px solid black}");
                 }
-                else {
+                else 
+                {
                     label->setStyleSheet("QLabel { border: 1px solid black; border-top: 3px solid black}");
                 }
             }
-            else {
-                if (col % GROUP_SIZE == 0) {
+            else 
+            {
+                if (col % GROUP_SIZE == 0) 
+                {
                     label->setStyleSheet("QLabel { border: 1px solid black; border-left: 3px solid black}");
                 }
             }
 
-            if (row == GRID_SIZE - 1) {
-                if (col % GROUP_SIZE == 0) {
+            if (row == GRID_SIZE - 1) 
+            {
+                if (col % GROUP_SIZE == 0) 
+                {
                     label->setStyleSheet("QLabel { border: 1px solid black; border-bottom: 3px solid black; border-left: 3px solid black}");
                 }
-                else {
+                else 
+                {
                     label->setStyleSheet("QLabel { border: 1px solid black; border-bottom: 3px solid black}");
                 }
             }
-            else if (col == GRID_SIZE - 1) {
+            else if (col == GRID_SIZE - 1) 
+            {
                 label->setStyleSheet("QLabel { border: 1px solid black; border-right: 3px solid black}");
             }
             if (row == GRID_SIZE - 1 && col == GRID_SIZE - 1)
