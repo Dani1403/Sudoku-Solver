@@ -8,11 +8,11 @@ Sudoku::Sudoku(QWidget* parent)
     m_gridLayout->setSpacing(0);
     m_labelGrid.resize(GRID_SIZE);
     m_lineEditGrid.resize(GRID_SIZE);
-    for (int i = 0; i < GRID_SIZE; i++)
+    for (int row = 0; row < GRID_SIZE; row++)
     {
-        m_labelGrid[i].resize(GRID_SIZE);
-        m_lineEditGrid[i].resize(GRID_SIZE);
-        for (int j = 0; j < GRID_SIZE; j++)
+        m_labelGrid[row].resize(GRID_SIZE);
+        m_lineEditGrid[row].resize(GRID_SIZE);
+        for (int col = 0; col < GRID_SIZE; col++)
         {
             QLineEdit* lineEdit = new QLineEdit();
             lineEdit->setAlignment(Qt::AlignCenter);
@@ -21,14 +21,14 @@ Sudoku::Sudoku(QWidget* parent)
             label->setAlignment(Qt::AlignCenter);
             label->setFixedSize(80, 80);
             label->setStyleSheet("QLabel { border: 1px solid black}");
-            m_gridLayout->addWidget(lineEdit, i, j);
-            m_gridLayout->addWidget(label, i, j);
+            m_gridLayout->addWidget(lineEdit, row, col);
+            m_gridLayout->addWidget(label, row, col);
             m_lineEdits.append(lineEdit);
-            m_labelGrid[i][j] = label;
-            m_lineEditGrid[i][j] = lineEdit;
+            m_labelGrid[row][col] = label;
+            m_lineEditGrid[row][col] = lineEdit;
             
-            if (i % GROUP_SIZE == 0) {
-                if (j % GROUP_SIZE == 0) {
+            if (row % GROUP_SIZE == 0) {
+                if (col % GROUP_SIZE == 0) {
                     label->setStyleSheet("QLabel { border: 1px solid black; border-top: 3px solid black; border-left: 3px solid black}");
                 }
                 else {
@@ -36,27 +36,27 @@ Sudoku::Sudoku(QWidget* parent)
                 }
             }
             else {
-                if (j % GROUP_SIZE == 0) {
+                if (col % GROUP_SIZE == 0) {
                     label->setStyleSheet("QLabel { border: 1px solid black; border-left: 3px solid black}");
                 }
             }
 
-            if (i == GRID_SIZE - 1) {
-                if (j % GROUP_SIZE == 0) {
+            if (row == GRID_SIZE - 1) {
+                if (col % GROUP_SIZE == 0) {
                     label->setStyleSheet("QLabel { border: 1px solid black; border-bottom: 3px solid black; border-left: 3px solid black}");
                 }
                 else {
                     label->setStyleSheet("QLabel { border: 1px solid black; border-bottom: 3px solid black}");
                 }
             }
-            else if (j == GRID_SIZE - 1) {
+            else if (col == GRID_SIZE - 1) {
                 label->setStyleSheet("QLabel { border: 1px solid black; border-right: 3px solid black}");
             }
-            if (i == GRID_SIZE - 1 && j == GRID_SIZE - 1)
+            if (row == GRID_SIZE - 1 && col == GRID_SIZE - 1)
             {
                 label->setStyleSheet("QLabel { border: 1px solid black; border-bottom: 3px solid black; border-right: 3px solid black}");
             }
-            if (i % GROUP_SIZE == 0 && j == GRID_SIZE - 1)
+            if (row % GROUP_SIZE == 0 && col == GRID_SIZE - 1)
             {
 				label->setStyleSheet("QLabel { border: 1px solid black; border-top: 3px solid black; border-right: 3px solid black}");
 			}
