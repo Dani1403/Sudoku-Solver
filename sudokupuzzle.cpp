@@ -42,6 +42,7 @@ void SudokuPuzzle::shuffleGrid() {
 void SudokuPuzzle::generatePuzzle() {
     this->clearGrid();
     this->solvePuzzle(false);
+    this->shuffleGrid();
     int numSquares = DIFFICULTY;
     while (numSquares > 0)
     {
