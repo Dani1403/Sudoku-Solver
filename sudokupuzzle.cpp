@@ -68,7 +68,28 @@ int SudokuPuzzle::solvePuzzle(bool findAll) {
 }
 
 void SudokuPuzzle::getHint(int& row, int& col, int& value) {
-	// TODO Auto-generated method stub
+    int solvedGrid[GRID_SIZE][GRID_SIZE] = { {EMPTY} };
+    for (int i = 0; i < GRID_SIZE; i++)
+    {
+        for (int j = 0; j < GRID_SIZE; j++)
+        {
+			solvedGrid[i][j] = grid[i][j];
+		}
+	}
+    sudokuSolverAux(solvedGrid, 0, 0, false);
+    for (int i = 0; i < GRID_SIZE; i++)
+    {
+        for (int j = 0; j < GRID_SIZE; j++)
+        {
+            if (grid[i][j] == EMPTY && solvedGrid[i][j] != EMPTY)
+            {
+				row = i;
+				col = j;
+                value = solvedGrid[i][j];
+				return;
+			}
+		}
+	}
 }
 
 int SudokuPuzzle::getValue(int row, int col) const {
