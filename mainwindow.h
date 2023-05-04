@@ -21,6 +21,7 @@ public:
     void solve();
     void reset();
     void update();
+    void hint();
     ~Sudoku();
 
 private:

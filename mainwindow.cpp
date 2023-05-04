@@ -69,7 +69,6 @@ Sudoku::Sudoku(QWidget* parent)
             {
 				label->setStyleSheet("QLabel { border: 1px solid black; border-top: 3px solid black; border-right: 3px solid black}");
 			}
-
 		}
 	}
 
@@ -78,11 +77,14 @@ Sudoku::Sudoku(QWidget* parent)
     QHBoxLayout* buttonLayout = new QHBoxLayout();
     QPushButton* solveButton = new QPushButton("Solve");
     QPushButton* newGameButton = new QPushButton("New Game");
+    QPushButton* hintButton = new QPushButton("Hint");
     buttonLayout->addWidget(solveButton);
     buttonLayout->addWidget(newGameButton);
+    buttonLayout->addWidget(hintButton);
 
     connect(newGameButton, &QPushButton::clicked, this, &Sudoku::newGame);
     connect(solveButton, &QPushButton::clicked, this, &Sudoku::solve);
+    connect(hintButton, &QPushButton::clicked, this, &Sudoku::hint);
 
     QVBoxLayout* mainLayout = new QVBoxLayout();
     mainLayout->addLayout(buttonLayout);
@@ -146,7 +148,6 @@ void Sudoku::update()
             else
             {
 				lineEdit->setText(QString::number(value));
-                //change the size of the font
                 QFont font = lineEdit->font();
                 font.setPointSize(20);
                 lineEdit->setFont(font);
@@ -155,4 +156,12 @@ void Sudoku::update()
 			}
 		}
 	}
+}
+
+void Sudoku::hint()
+{
+    int row, col, value;
+    m_puzzle->getHint(row, col, value);
+    m_puzzle->setValue(row, col, value);
+    this->update();
 }
