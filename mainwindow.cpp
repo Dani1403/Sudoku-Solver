@@ -102,11 +102,13 @@ Sudoku::~Sudoku()
 void Sudoku::newGame()
 {
     m_puzzle->generatePuzzle();
+    this->update();
 }
 
 void Sudoku::solve()
 {
 	m_puzzle->solvePuzzle(false);
+    this->update();
 
 }
 
@@ -123,4 +125,30 @@ void Sudoku::reset()
         }
     }
 	m_puzzle->clearGrid();
+    this->update();
+}
+
+void Sudoku::update()
+{
+    for (int row = 0; row < GRID_SIZE; row++)
+    {
+        for (int col = 0; col < GRID_SIZE; col++)
+        {
+			QLineEdit* lineEdit = m_lineEditGrid[row][col];
+			QLabel* label = m_labelGrid[row][col];
+			int value = m_puzzle->getValue(row, col);
+            if (value == 0)
+            {
+				lineEdit->setText("");
+				lineEdit->setReadOnly(false);
+				lineEdit->setStyleSheet("");
+			}
+            else
+            {
+				lineEdit->setText(QString::number(value));
+				lineEdit->setReadOnly(true);
+				lineEdit->setStyleSheet("QLineEdit { color: blue }");
+			}
+		}
+	}
 }

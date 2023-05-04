@@ -20,6 +20,7 @@ public:
     void newGame();
     void solve();
     void reset();
+    void update();
     ~Sudoku();
 
 private:
