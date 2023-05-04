@@ -146,6 +146,10 @@ void Sudoku::update()
             else
             {
 				lineEdit->setText(QString::number(value));
+                //change the size of the font
+                QFont font = lineEdit->font();
+                font.setPointSize(20);
+                lineEdit->setFont(font);
 				lineEdit->setReadOnly(true);
 				lineEdit->setStyleSheet("QLineEdit { color: blue }");
 			}
