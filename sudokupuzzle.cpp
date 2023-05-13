@@ -2,22 +2,28 @@
 
 int sudokuSolverAux(int grid[GRID_SIZE][GRID_SIZE], int row, int col, bool findAll);
 
-SudokuPuzzle::SudokuPuzzle() {
-	for (int i = 0; i < GRID_SIZE; i++) {
-		for (int j = 0; j < GRID_SIZE; j++) {
+SudokuPuzzle::SudokuPuzzle() 
+{
+	for (int i = 0; i < GRID_SIZE; i++) 
+    {
+		for (int j = 0; j < GRID_SIZE; j++) 
+        {
 			grid[i][j] = EMPTY;
 		}
 	}
 }
 
 void SudokuPuzzle::shuffleGrid() {
-    for (int group = 0; group < GROUP_SIZE; group++) {
+    for (int group = 0; group < GROUP_SIZE; group++) 
+    {
         int startRow = group * GROUP_SIZE;
         int endRow = startRow + GROUP_SIZE - 1;
-        for (int i = 0; i < GRID_SIZE; i++) {
+        for (int i = 0; i < GRID_SIZE; i++) 
+        {
 			int row1 = rand() % (endRow - startRow + 1) + startRow;
 			int row2 = rand() % (endRow - startRow + 1) + startRow;
-            for (int col = 0; col < GRID_SIZE; col++) {
+            for (int col = 0; col < GRID_SIZE; col++) 
+            {
 				int temp = grid[row1][col];
 				grid[row1][col] = grid[row2][col];
 				grid[row2][col] = temp;
@@ -30,7 +36,8 @@ void SudokuPuzzle::shuffleGrid() {
         for (int i = 0; i < GRID_SIZE; i++) {
             int col1 = rand() % (endCol - startCol + 1) + startCol;
             int col2 = rand() % (endCol - startCol + 1) + startCol;
-            for (int row = 0; row < GRID_SIZE; row++) {
+            for (int row = 0; row < GRID_SIZE; row++) 
+            {
                 int temp = grid[row][col1];
                 grid[row][col1] = grid[row][col2];
                 grid[row][col2] = temp;
@@ -39,7 +46,8 @@ void SudokuPuzzle::shuffleGrid() {
     }
 }
 
-void SudokuPuzzle::generatePuzzle() {
+void SudokuPuzzle::generatePuzzle() 
+{
     this->clearGrid();
     this->solvePuzzle(false);
     this->shuffleGrid();
@@ -63,11 +71,13 @@ void SudokuPuzzle::generatePuzzle() {
 }
 
 
-int SudokuPuzzle::solvePuzzle(bool findAll) {
+int SudokuPuzzle::solvePuzzle(bool findAll) 
+{
 	return sudokuSolverAux(grid, 0, 0, findAll);
 }
 
-void SudokuPuzzle::getHint(int& row, int& col, int& value) {
+void SudokuPuzzle::getHint(int& row, int& col, int& value) 
+{
     int solvedGrid[GRID_SIZE][GRID_SIZE] = { {EMPTY} };
     for (int i = 0; i < GRID_SIZE; i++)
     {
@@ -92,15 +102,18 @@ void SudokuPuzzle::getHint(int& row, int& col, int& value) {
 	}
 }
 
-int SudokuPuzzle::getValue(int row, int col) const {
+int SudokuPuzzle::getValue(int row, int col) const
+{
 	return grid[row][col];
 }
 
-void SudokuPuzzle::setValue(int row, int col, int value) {
+void SudokuPuzzle::setValue(int row, int col, int value) 
+{
     grid[row][col] = value;
 }
 
-void SudokuPuzzle::clearGrid() {
+void SudokuPuzzle::clearGrid() 
+{
     for (int i = 0; i < GRID_SIZE; i++)
     {
         for (int j = 0; j < GRID_SIZE; j++)
@@ -118,7 +131,8 @@ void SudokuPuzzle::clearGrid() {
  * @param digit : the digit to check
  * return true if the row is valid, false otherwise
  */
-bool isRowValid(int grid[GRID_SIZE][GRID_SIZE], int row, int col, int digit) {
+bool isRowValid(int grid[GRID_SIZE][GRID_SIZE], int row, int col, int digit) 
+{
     for (int i = 0; i < GRID_SIZE; i++)
     {
         if (grid[row][i] == digit && i != col)
@@ -137,7 +151,8 @@ bool isRowValid(int grid[GRID_SIZE][GRID_SIZE], int row, int col, int digit) {
  * @param digit : the digit to check
  * return true if the column is valid, false otherwise
  */
-bool isColumnValid(int grid[GRID_SIZE][GRID_SIZE], int row, int col, int digit) {
+bool isColumnValid(int grid[GRID_SIZE][GRID_SIZE], int row, int col, int digit) 
+{
     for (int i = 0; i < GRID_SIZE; i++)
     {
         if (grid[i][col] == digit && i != row)
@@ -156,7 +171,8 @@ bool isColumnValid(int grid[GRID_SIZE][GRID_SIZE], int row, int col, int digit) 
  * @param digit : the digit to check
  * return true if the square is valid, false otherwise
  */
-bool isSquareValid(int grid[GRID_SIZE][GRID_SIZE], int row, int col, int digit) {
+bool isSquareValid(int grid[GRID_SIZE][GRID_SIZE], int row, int col, int digit) 
+{
     int rowStart = row - row % SQUARE_SIZE;
     int colStart = col - col % SQUARE_SIZE;
     for (int i = rowStart; i < rowStart + SQUARE_SIZE; i++)
@@ -180,7 +196,8 @@ bool isSquareValid(int grid[GRID_SIZE][GRID_SIZE], int row, int col, int digit) 
  * @param digit : the digit to check
  * return true if the move is legal, false otherwise
  */
-bool isMoveLegal(int grid[GRID_SIZE][GRID_SIZE], int row, int col, int digit) {
+bool isMoveLegal(int grid[GRID_SIZE][GRID_SIZE], int row, int col, int digit) 
+{
     if (!isRowValid(grid, row, col, digit) || !isColumnValid(grid, row, col, digit) || !isSquareValid(grid, row, col, digit))
     {
         return false;
